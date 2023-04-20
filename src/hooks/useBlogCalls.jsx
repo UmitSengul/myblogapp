@@ -1,8 +1,8 @@
 import axios from "axios";
-import { toastErrorNotify, toastSuccessNotify } from "../helper/ToastNotify";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { allBlogs, deleteBlog,updateBlog,addBlog,getBlogById,fetchStart,fetchFail } from "../features/blogSlice";
+import {allBlogs, deleteBlog,updateBlog,setBlog,getBlogById,fetchStart,fetchFail } from "../features/blogSlice";
+import { toastErrorNotify, toastSuccessNotify } from "../helpers/ToastNotify";
 
 const useBlogCalls = () => {
   const navigate = useNavigate();
@@ -66,7 +66,7 @@ const useBlogCalls = () => {
         values,
         { headers: { Authorization: `Token ${token}` } }
       );
-      dispatch(addBlog(data));
+      dispatch(setBlog(data));
       toastSuccessNotify("New Blog Added");
       navigate("/");
       console.log(data);
