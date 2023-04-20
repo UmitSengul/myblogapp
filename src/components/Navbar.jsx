@@ -15,11 +15,14 @@ import AdbIcon from '@mui/icons-material/Adb';
 import WbSunnyIcon from "@mui/icons-material/WbSunny"
 import { useSelector } from 'react-redux';
 import { userMenuItems, userNavBarPages, visitorNavBarPages } from '../helpers/variables';
+import useAuthCall from '../hooks/useAuthCalls';
+import { useNavigate } from 'react-router-dom';
 
 
 
 function Navbar({ setPrefersDarkMode, prefersDarkMode }) {
-
+  const { logout } = useAuthCall()
+  const navigate=useNavigate()
   const{currentUser}=useSelector((state)=>state.auth)
 
 
@@ -46,6 +49,22 @@ function Navbar({ setPrefersDarkMode, prefersDarkMode }) {
     setPrefersDarkMode(!prefersDarkMode)
   }
 
+  const NavigateMenu = (event) => {
+    console.log(event.target.innerText)
+    if (event.target.innerText.toUpperCase() === "LOGOUT") {
+      logout();
+  
+     } else if    (event.target.innerText.toUpperCase() === "ADMIN PANEL") {
+      navigate(`/AdminPanel`)}
+      else if    (event.target.innerText.toUpperCase() === "HOME") {
+        navigate(`/`);
+  
+     } else {
+      navigate(`/${event.target.innerText}`);
+    }
+    
+  }
+console.log(userNavBarPages)
 
 
   return (
@@ -101,13 +120,13 @@ function Navbar({ setPrefersDarkMode, prefersDarkMode }) {
               }}
             >
               {currentUser ? 
-                userNavBarPages.map((page) => (
-                  <MenuItem key={page} onClick={handleCloseNavMenu}>
+                userNavBarPages.map((page,index) => (
+                  <MenuItem key={index} onClick={(e)=>{handleCloseNavMenu();NavigateMenu(e)}}>
                     <Typography textAlign="center">{page}</Typography>
                   </MenuItem>
                 )) :
-                visitorNavBarPages.map((page) => (
-                  <MenuItem key={page} onClick={handleCloseNavMenu}>
+                visitorNavBarPages.map((page,index) => (
+                  <MenuItem key={index} onClick={(e)=>{handleCloseNavMenu();NavigateMenu(e)}}>
                     <Typography textAlign="center">{page}</Typography>
                   </MenuItem>
                 ))
@@ -134,23 +153,18 @@ function Navbar({ setPrefersDarkMode, prefersDarkMode }) {
             LOGO
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-            {currentUser ? userNavBarPages.map((page) => (
-              <Button
-                key={page}
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: 'white', display: 'block' }}
-              >
-                {page}
-              </Button>
-            )): visitorNavBarPages.map((page) => (
-              <Button
-              key={page}
-              onClick={handleCloseNavMenu}
-              sx={{ my: 2, color: 'white', display: 'block' }}
-            >
-              {page}
-            </Button>
-            ))}
+          {currentUser ? 
+                userNavBarPages.map((page,index) => (
+                  <MenuItem key={index} onClick={(e)=>{handleCloseNavMenu();NavigateMenu(e)}}>
+                    <Typography textAlign="center">{page}</Typography>
+                  </MenuItem>
+                )) :
+                visitorNavBarPages.map((page,index) => (
+                  <MenuItem key={index} onClick={(e)=>{handleCloseNavMenu();NavigateMenu(e)}}>
+                    <Typography textAlign="center">{page}</Typography>
+                  </MenuItem>
+                ))
+              }
           </Box>
           <Box sx={{ marginRight: "1.5rem" }}>
             <Tooltip
@@ -187,15 +201,15 @@ function Navbar({ setPrefersDarkMode, prefersDarkMode }) {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-              {currentUser? userMenuItems.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
+             {currentUser? userMenuItems.map((item) => (
+                <MenuItem key={item} onClick={(e)=>{handleCloseUserMenu();NavigateMenu(e)}}>
+                  <Typography textAlign="center">{item}</Typography>
                 </MenuItem>
               )):
-              <MenuItem  onClick={handleCloseUserMenu}>
+              <MenuItem  onClick={(e)=>{handleCloseUserMenu();NavigateMenu(e)}}>
               <Typography textAlign="center">Login</Typography>
             </MenuItem>
-              }
+              } 
             </Menu>
           </Box>
         </Toolbar>

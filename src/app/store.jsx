@@ -8,18 +8,22 @@ import storage from 'redux-persist/lib/storage' // defaults to localStorage for 
 //! configureStore metodu hem bir store olusturur hem de olsuturken farkli reducer'lari birlesitir.
 
 
-const persistConfig = {
+const persistAuthConfig = {
   key: 'auth',
   storage,
 }
+const persistThemeConfig = {
+  key: 'theme',
+  storage,
+}
 
-const persistedReducer = persistReducer(persistConfig, authReducer)
-
+const persistedauthReducer = persistReducer(persistAuthConfig, authReducer)
+const persistedthemeReducer = persistReducer(persistThemeConfig, themeReducer)
 const store = configureStore({
   reducer: {
-    auth: persistedReducer,
+    auth: persistedauthReducer,
     blog: blogReducer,
-    theme: themeReducer,
+    theme: persistedthemeReducer,
   
   },
   devTools: process.env.NODE_ENV !== "production",

@@ -9,8 +9,8 @@ import {
 
 import { useDispatch } from "react-redux"
 import { useNavigate } from "react-router-dom"
-import { toastErrorNotify, toastSuccessNotify } from "../helper/ToastNotify"
 
+import {toastErrorNotify, toastSuccessNotify, toastWarnNotify} from "../helpers/ToastNotify"
 const useAuthCall = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
@@ -31,7 +31,7 @@ const useAuthCall = () => {
     } catch (error) {
       dispatch(fetchFail())
       console.log(error)
-      toastSuccessNotify("Login couldnt be performed")
+      toastErrorNotify("Login couldnt be performed")
     }
   }
 
