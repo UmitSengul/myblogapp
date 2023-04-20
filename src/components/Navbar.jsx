@@ -201,7 +201,7 @@ console.log(userNavBarPages)
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-             {currentUser===null?  userMenuItems.map((item) => (
+             {currentUser!==null?  userMenuItems.map((item) => (
                 <MenuItem key={item} onClick={(e)=>{handleCloseUserMenu();NavigateMenu(e)}}>
                   <Typography textAlign="center">{item}</Typography>
                 </MenuItem>

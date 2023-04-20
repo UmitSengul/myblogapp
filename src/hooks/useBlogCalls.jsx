@@ -34,7 +34,7 @@ const useBlogCalls = () => {
       console.log(id)
       const blg = data.filter((x) => x.id === id);
       console.log(blg[0])
-      dispatch(getBlogById(blg[0]));
+      dispatch(setBlog(blg[0]));
 
       toastSuccessNotify("Get Blog without user");
     } catch (error) {
@@ -127,7 +127,7 @@ const useBlogCalls = () => {
 
       toastSuccessNotify("Blog liked");
       getAllBlogs();
-  
+  getBlogById(id);
     } catch (error) {
       toastErrorNotify("Coudnt refresh blog");
       console.log(error);
