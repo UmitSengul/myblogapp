@@ -189,4 +189,4 @@ return (
   </>
 );
 };
-export default BlogDetail;
+export default memo(BlogDetail);
