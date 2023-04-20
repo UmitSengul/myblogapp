@@ -5,9 +5,9 @@ import { Grid } from '@mui/material';
 import BlogCard from '../components/blog/BlogCard';
 
 const HomePage = () => {
-  const { GetAllBlogs } = useBlogCalls();
+  const { getAllBlogs } = useBlogCalls();
   useEffect(() => {
-    GetAllBlogs();
+    getAllBlogs();
   }, []);
     
   

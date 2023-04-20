@@ -4,13 +4,14 @@ import { useDispatch, useSelector } from "react-redux";
 import {allBlogs, deleteBlog,updateBlog,setBlog,getBlogById,fetchStart,fetchFail } from "../features/blogSlice";
 import { toastErrorNotify, toastSuccessNotify } from "../helpers/ToastNotify";
 
+
 const useBlogCalls = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { currentUser } = useSelector((state) => state.auth);
   const { token } = useSelector((state) => state.auth)
 
-  const GetAllBlogs = async () => {
+  const getAllBlogs = async () => {
     try { dispatch(fetchStart());
       const { data } = await axios(
         `http://32171.fullstack.clarusway.com/api/blogs/`
@@ -24,7 +25,7 @@ const useBlogCalls = () => {
     }
   };
 
-  const GetBlogWithoutUser = async (id) => {
+  const getBlogWithoutUser = async (id) => {
     try { dispatch(fetchStart());
       const { data } = await axios(
         `http://32171.fullstack.clarusway.com/api/blogs/`
@@ -43,7 +44,7 @@ const useBlogCalls = () => {
     }
   };
 
-  const GetBlogById = async (id) => {
+  const getBlogById = async (id) => {
     try { dispatch(fetchStart());
       const { data } = await axios(
         `http://32171.fullstack.clarusway.com/api/blogs/${id}`,
@@ -59,7 +60,7 @@ const useBlogCalls = () => {
   };
 
 
-  const AddBlog = async (values) => {
+  const addBlog = async (values) => {
     try {dispatch(fetchStart());
       const { data } = await axios.post(
         `http://32171.fullstack.clarusway.com/api/blogs/`,
@@ -78,7 +79,7 @@ const useBlogCalls = () => {
   };
 
 
-  const DeleteBlog = async (id) => {
+  const deleteBlog = async (id) => {
     try {  dispatch(fetchStart());
        await axios.delete(
         `http://32171.fullstack.clarusway.com/api/blogs/${id}`,
@@ -95,7 +96,7 @@ const useBlogCalls = () => {
   };
 
 
-  const UpdateBlog = async (id, values) => {
+  const updateBlog = async (id, values) => {
     try {   dispatch(fetchStart());
       const { data } = await axios.put(
         `http://32171.fullstack.clarusway.com/api/blogs/${id}`,{values},
@@ -125,7 +126,7 @@ const useBlogCalls = () => {
       );
 
       toastSuccessNotify("Blog liked");
-      GetBlogById(id);
+      getBlogById(id);
       toastSuccessNotify("Get Blog By Id");
     } catch (error) {
       toastErrorNotify("Coudnt refresh blog");
@@ -146,7 +147,7 @@ const useBlogCalls = () => {
       );
 
       toastSuccessNotify("Blog Commented");
-      GetBlogById(id,token);
+      getBlogById(id,token);
       toastSuccessNotify("Get Blog By Id");
     } catch (error) {
       toastErrorNotify("Coudnt refresh blog");
@@ -154,7 +155,7 @@ const useBlogCalls = () => {
     }
   };
 
-  return { GetAllBlogs,GetBlogById, AddBlog,DeleteBlog,UpdateBlog,handleLike,handleComment,GetBlogWithoutUser };
+  return { getAllBlogs,getBlogById, addBlog,deleteBlog,updateBlog,handleLike,handleComment,getBlogWithoutUser };
 };
 
 export default useBlogCalls;

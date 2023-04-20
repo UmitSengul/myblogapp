@@ -12,11 +12,18 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
+import WbSunnyIcon from "@mui/icons-material/WbSunny"
+import { useSelector } from 'react-redux';
+import { userMenuItems, userNavBarPages, visitorNavBarPages } from '../helpers/variables';
 
-const pages = ['Products', 'Pricing', 'Blog'];
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
-function Navbar() {
+
+function Navbar({ setPrefersDarkMode, prefersDarkMode }) {
+
+  const{currentUser}=useSelector((state)=>state.auth)
+
+
+    
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
@@ -34,6 +41,12 @@ function Navbar() {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
+
+  const handleThemeChange = () => {
+    setPrefersDarkMode(!prefersDarkMode)
+  }
+
+
 
   return (
     <AppBar position="static">
@@ -87,11 +100,18 @@ function Navbar() {
                 display: { xs: 'block', md: 'none' },
               }}
             >
-              {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
-                </MenuItem>
-              ))}
+              {currentUser ? 
+                userNavBarPages.map((page) => (
+                  <MenuItem key={page} onClick={handleCloseNavMenu}>
+                    <Typography textAlign="center">{page}</Typography>
+                  </MenuItem>
+                )) :
+                visitorNavBarPages.map((page) => (
+                  <MenuItem key={page} onClick={handleCloseNavMenu}>
+                    <Typography textAlign="center">{page}</Typography>
+                  </MenuItem>
+                ))
+              }
             </Menu>
           </Box>
           <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
@@ -114,7 +134,7 @@ function Navbar() {
             LOGO
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-            {pages.map((page) => (
+            {currentUser ? userNavBarPages.map((page) => (
               <Button
                 key={page}
                 onClick={handleCloseNavMenu}
@@ -122,7 +142,27 @@ function Navbar() {
               >
                 {page}
               </Button>
+            )): visitorNavBarPages.map((page) => (
+              <Button
+              key={page}
+              onClick={handleCloseNavMenu}
+              sx={{ my: 2, color: 'white', display: 'block' }}
+            >
+              {page}
+            </Button>
             ))}
+          </Box>
+          <Box sx={{ marginRight: "1.5rem" }}>
+            <Tooltip
+              title="Theme"
+              variant="contain"
+              sx={{ width: "20px", height: "20px" }}
+              onClick={handleThemeChange}
+            >
+              <IconButton>
+                <WbSunnyIcon sx={{ width: "1.2rem" }} />
+              </IconButton>
+            </Tooltip>
           </Box>
 
           <Box sx={{ flexGrow: 0 }}>
@@ -147,11 +187,15 @@ function Navbar() {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-              {settings.map((setting) => (
+              {currentUser? userMenuItems.map((setting) => (
                 <MenuItem key={setting} onClick={handleCloseUserMenu}>
                   <Typography textAlign="center">{setting}</Typography>
                 </MenuItem>
-              ))}
+              )):
+              <MenuItem  onClick={handleCloseUserMenu}>
+              <Typography textAlign="center">Login</Typography>
+            </MenuItem>
+              }
             </Menu>
           </Box>
         </Toolbar>

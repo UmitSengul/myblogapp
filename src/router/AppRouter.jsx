@@ -12,14 +12,13 @@ import PrivateRouter from "./PrivateRouter";
 import NewBlog from "../pages/NewBlog";
 import MyBlogs from "../pages/MyBlogs";
 import Author from "../pages/Author";
-import Navbar from "../components/Navbar";
+
 
 
 //BrowserRouter Router olarak import edildi. dikkat etmek lazım.
 const AppRouter = () => {
     return (
         <Router>
-            <Navbar />
             <Routes>
                 <Route path="" element={<HomePage />} />
                 <Route path="blog/:id" element={<BlogDetail />} />
