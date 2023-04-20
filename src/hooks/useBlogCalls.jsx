@@ -50,7 +50,7 @@ const useBlogCalls = () => {
         `http://32171.fullstack.clarusway.com/api/blogs/${id}`,
      { headers: { Authorization: `Token ${token}` } }
       );
-      dispatch(getBlogById(data));
+      dispatch(setBlog(data));
       toastSuccessNotify("Get Blog By Id");
     } catch (error) {
       toastErrorNotify("Coudnt get blog by ıd");
@@ -126,8 +126,8 @@ const useBlogCalls = () => {
       );
 
       toastSuccessNotify("Blog liked");
-      getBlogById(id);
-      toastSuccessNotify("Get Blog By Id");
+      getAllBlogs();
+  
     } catch (error) {
       toastErrorNotify("Coudnt refresh blog");
       console.log(error);

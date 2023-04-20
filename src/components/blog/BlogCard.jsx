@@ -18,20 +18,15 @@ import { useNavigate } from 'react-router-dom';
 import useBlogCalls from '../../hooks/useBlogCalls';
 
 const BlogCard = ({blog,menu}) =>{
-const [myBlog, setMyBlog] = React.useState(blog);
 const navigate= useNavigate();
-myBlog===null&& navigate("/")
+blog===null&& navigate("/")
 
-console.log(myBlog)
-  const { token } = useSelector((state) => state.auth);
   const { currentUser } = useSelector((state) => state.auth);
+
  const {handleLike,handleComment}=useBlogCalls();
   console.log("blogcard")
 
-  let liked = myBlog.likes_n?.find(x => x.user_id === currentUser?.id) 
-
-
-
+  let liked = blog.likes_n?.find(x => x.user_id === currentUser?.id) 
 
   return (
     <Card sx={{ maxWidth: 345, height: '100%' }}>
@@ -42,7 +37,7 @@ console.log(myBlog)
           }}
         component="img"
         height="194"
-        image={myBlog?.image}
+        image={blog?.image}
         alt="Paella dish"
       />
               <CardHeader
@@ -58,39 +53,39 @@ console.log(myBlog)
 
       <CardContent>
         <Typography variant="body2" color="text.secondary">
-          {myBlog.content}
+          {blog.content}
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
         {liked !== undefined ? (
           <IconButton
             color="secondary"
-            onClick={() => handleLike(myBlog.id, token)} aria-label="like">
+            onClick={() => handleLike(blog.id)} aria-label="like">
             <FavoriteIcon />
-            {myBlog.likes}
+            {blog.likes}
           </IconButton>
         ) : (
           <IconButton
-            onClick={() => handleLike(myBlog.id, token)} aria-label="like"
+            onClick={() => handleLike(blog.id)} aria-label="like"
           >
             <FavoriteIcon />
-            {myBlog.likes}
+            {blog.likes}
           </IconButton>
         )}
 
         <IconButton  aria-label="comments" >
           <ModeCommentOutlinedIcon />
-          {myBlog.comment_count}
+          {blog.comment_count}
         </IconButton>
         <IconButton aria-label="shown">
           <VisibilityOutlinedIcon />
-          {myBlog.post_views}
+          {blog.post_views}
         </IconButton>
         {menu==="myblog"?<Button variant="contained"sx={{ marginRight: 1, marginLeft: "auto"  }} size="small" 
-          onClick={() => navigate(`${blog.id}`, { state: myBlog})} >
+          onClick={() => navigate(`${blog.id}`, { state: blog})} >
         Edit Blog</Button>:
       <Button variant="contained"sx={{ marginRight: 1, marginLeft: "auto"  }} size="small" 
-          onClick={() => navigate(`blog/${blog.id}`, { state: myBlog})} >
+          onClick={() => navigate(`blog/${blog.id}`, { state: blog})} >
         Read More</Button>}
   
 

@@ -26,7 +26,7 @@ const HomePage = () => {
         
    
     {allBlogs.map(blog =><Grid item >
-      <BlogCard  key={blog.id} blog={blog} /> </Grid>)
+      <BlogCard  key={blog.id} blog={blog} menu="HomePage" /> </Grid>)
     }
   </Grid></>
   )

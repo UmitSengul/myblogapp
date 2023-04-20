@@ -119,7 +119,7 @@ console.log(userNavBarPages)
                 display: { xs: 'block', md: 'none' },
               }}
             >
-              {currentUser ? 
+              {currentUser===null? 
                 userNavBarPages.map((page,index) => (
                   <MenuItem key={index} onClick={(e)=>{handleCloseNavMenu();NavigateMenu(e)}}>
                     <Typography textAlign="center">{page}</Typography>
@@ -153,7 +153,7 @@ console.log(userNavBarPages)
             LOGO
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-          {currentUser ? 
+          {currentUser===null?  
                 userNavBarPages.map((page,index) => (
                   <MenuItem key={index} onClick={(e)=>{handleCloseNavMenu();NavigateMenu(e)}}>
                     <Typography textAlign="center">{page}</Typography>
@@ -201,7 +201,7 @@ console.log(userNavBarPages)
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-             {currentUser? userMenuItems.map((item) => (
+             {currentUser===null?  userMenuItems.map((item) => (
                 <MenuItem key={item} onClick={(e)=>{handleCloseUserMenu();NavigateMenu(e)}}>
                   <Typography textAlign="center">{item}</Typography>
                 </MenuItem>
