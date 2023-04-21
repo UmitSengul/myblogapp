@@ -8,7 +8,6 @@ import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
 import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
@@ -65,7 +64,7 @@ function Navbar({ setPrefersDarkMode, prefersDarkMode }) {
     
   }
 console.log(userNavBarPages)
-
+console.log(currentUser);
 
   return (
     <AppBar position="static">
@@ -119,7 +118,8 @@ console.log(userNavBarPages)
                 display: { xs: 'block', md: 'none' },
               }}
             >
-              {currentUser===null? 
+              {currentUser!==null? 
+
                 userNavBarPages.map((page,index) => (
                   <MenuItem key={index} onClick={(e)=>{handleCloseNavMenu();NavigateMenu(e)}}>
                     <Typography textAlign="center">{page}</Typography>
@@ -153,7 +153,7 @@ console.log(userNavBarPages)
             LOGO
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-          {currentUser===null?  
+          {currentUser!==null?  
                 userNavBarPages.map((page,index) => (
                   <MenuItem key={index} onClick={(e)=>{handleCloseNavMenu();NavigateMenu(e)}}>
                     <Typography textAlign="center">{page}</Typography>

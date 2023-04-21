@@ -27,7 +27,6 @@ const BlogDetail = () => {
   const { currentUser } = useSelector((state) => state.auth);
   const [expanded, setExpanded] = React.useState(false);
   const [content, setContent] = React.useState("");
-  const { getBlogById, getBlogWithoutUser } = useBlogCalls();
   const dispatch = useDispatch();
   console.log(state)
   useEffect(() => { 
@@ -58,7 +57,7 @@ return (
       justifyContent="space-around"
       spacing={3}
     >
-      <Card sx={{ maxWidth: 600, width: "70vw", height: "100%" }}>
+      <Card sx={{ maxWidth: 800, width: "70vw", height: "100%" }}>
         <CardMedia
           sx={{
             justifyContent: "center",

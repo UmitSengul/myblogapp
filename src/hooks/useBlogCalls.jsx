@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import {allBlogs, deleteBlog,updateBlog,setBlog,getBlogById,fetchStart,fetchFail } from "../features/blogSlice";
+import {allBlogs, deleteBlogById,updateBlog,setBlog,getBlogById,fetchStart,fetchFail, setCategories } from "../features/blogSlice";
 import { toastErrorNotify, toastSuccessNotify } from "../helpers/ToastNotify";
 
 
@@ -83,9 +83,9 @@ const useBlogCalls = () => {
     try {  dispatch(fetchStart());
        await axios.delete(
         `http://32171.fullstack.clarusway.com/api/blogs/${id}`,
-     { headers: { Authorization: `Token ${token}` } }
+        { headers: { Authorization: `Token ${token}` } }
       );
-      dispatch(deleteBlog(id));
+      dispatch(deleteBlogById(id));
       toastSuccessNotify("Blog Deleted");
       navigate("/");
   
@@ -155,7 +155,22 @@ const useBlogCalls = () => {
     }
   };
 
-  return { getAllBlogs,getBlogById, addBlog,deleteBlog,updateBlog,handleLike,handleComment,getBlogWithoutUser };
+
+  const getCategories = async () => {
+    try { dispatch(fetchStart());
+      const { data } = await axios(
+        "http://32171.fullstack.clarusway.com/api/categories/",
+      );
+      dispatch(setCategories(data));
+      toastSuccessNotify("Get Categories");
+    } catch (error) {
+      toastErrorNotify("Coudnt get categories");
+      console.log(error);
+      dispatch(fetchFail())
+    }
+  };
+
+  return { getAllBlogs,getBlogById,getCategories, addBlog,deleteBlog,updateBlog,handleLike,handleComment,getBlogWithoutUser };
 };
 
 export default useBlogCalls;

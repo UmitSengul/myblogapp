@@ -2,9 +2,9 @@ import *as Yup from     "yup";
 
 
 export const userNavBarPages = ["Home", "My Blogs", 'New Blog', 'About'];
-export const userMenuItems = ['Profile', "Admin Panel", 'Logout'];
-export const visitorMenuItems = ["Register","Login"];
-export const visitorNavBarPages= ['Home', 'New Blog','About' ];
+export const userMenuItems = ['Profile', "Admin Panel",'Logout'];
+export const visitorMenuItems = ["Register",'About',"Login"];
+export const visitorNavBarPages= ['Home', 'About' ];
 export const validationSchema = Yup.object({
     email: Yup.string("Enter your e-mail")
       .email("enter a valid e-mail")

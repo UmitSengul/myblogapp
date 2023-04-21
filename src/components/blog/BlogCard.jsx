@@ -42,21 +42,24 @@ const BlogCard = ({ blog, menu }) => {
       />
       <CardHeader 
         avatar={
-          <Avatar onClick={(e) => {navigate(`/blog/author/${blog.author}`)}} sx={{ bgcolor: red[500] }} aria-label="recipe">
-            <PersonIcon />
+          <Avatar onClick={(e) => {navigate(`/blog/author/${blog.author}`)}}  sx={{ bgcolor: "transparent" }}  aria-label="recipe">
+      <IconButton color="primary" aria-label="upload picture" component="label">
+      <PersonIcon />
+    </IconButton>  
           </Avatar>
         }
 
         title={blog.author}
         subheader={new Date(blog.publish_date).toLocaleString()}
-      >        </CardHeader>
+        
+      >      </CardHeader>
 
       <CardContent>
         <Typography variant="body2" color="text.secondary">
           {blog.content}
         </Typography>
       </CardContent>
-      <CardActions disableSpacing>
+      <CardActions disableSpacing >
         {liked !== undefined ? (
           <IconButton
             color="secondary"

@@ -13,7 +13,7 @@ export default function Footer() {
     <React.Fragment>
       <CssBaseline />
 
-      <AppBar color="primary" className="sticky bottom-0" sx={{ top: 'auto', bottom: 0 }}>
+      <AppBar color="primary" sx={{ top: 'auto', bottom: "auto" }}>
         <Toolbar>
           <Box
             sx={{

@@ -21,11 +21,12 @@ const HomePage = () => {
     direction="row"
     alignItems="stretch"   
     justifyContent="space-around"
-    spacing={3} >
+    spacing={3}
+    >
   
         
    
-    {allBlogs.map(blog =><Grid item >
+    {allBlogs.map(blog =><Grid item s  >
       <BlogCard  key={blog.id} blog={blog} menu="HomePage" /> </Grid>)
     }
   </Grid></>

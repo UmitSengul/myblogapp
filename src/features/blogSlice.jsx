@@ -30,7 +30,7 @@ const blogSlice = createSlice({
       state.blog = action.payload
     },
 
-    deleteBlog: (state, action) => {
+    deleteBlogById: (state, action) => {
       state.loading = false;
       state.blog ={}
       state.allBlogs=state["allBlogs"].filter(blog=>blog.id!==action.payload)
@@ -39,6 +39,14 @@ const blogSlice = createSlice({
       state.loading = false;
       state.allBlogs[state.allBlogs.findIndex(obj => obj.id === action.payload.id)] = action.payload.data
     },
+
+
+    setCategories: (state, action) => {
+      state.loading = false;
+      state.categories = action.payload
+    },
+
+
 
     fetchStart: (state) => {
       state.loading = true;
@@ -51,10 +59,8 @@ const blogSlice = createSlice({
   }
 },
 
-
-
 );
 
-export const {allBlogs, deleteBlog,updateBlog,setBlog,getBlogById,fetchStart,fetchFail} = blogSlice.actions
+export const {allBlogs, setCategories, deleteBlogById,updateBlog,setBlog,getBlogById,fetchStart,fetchFail} = blogSlice.actions
 
 export default blogSlice.reducer
