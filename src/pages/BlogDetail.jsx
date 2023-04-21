@@ -114,7 +114,7 @@ return (
             {myBlog?.post_views}
           </IconButton>
           {myBlog && currentUser && myBlog.author === currentUser.username && (
-  <DeleteModal id={myBlog.id} />
+  <DeleteModal id={myBlog?.id} />
 )}
           {/* {blog.author===currentUser.username && <UpdateModal blog={blog} />}  */}
 
