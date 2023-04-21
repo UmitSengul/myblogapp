@@ -17,39 +17,39 @@ import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
 import { useNavigate } from 'react-router-dom';
 import useBlogCalls from '../../hooks/useBlogCalls';
 
-const BlogCard = ({blog,menu}) =>{
-const navigate= useNavigate();
-blog===null&& navigate("/")
+const BlogCard = ({ blog, menu }) => {
+  const navigate = useNavigate();
+  blog === null && navigate("/")
 
   const { currentUser } = useSelector((state) => state.auth);
 
- const {handleLike,handleComment}=useBlogCalls();
+  const { handleLike, handleComment } = useBlogCalls();
   console.log("blogcard")
 
-  let liked = blog.likes_n?.find(x => x.user_id === currentUser?.id) 
+  let liked = blog.likes_n?.find(x => x.user_id === currentUser?.id)
 
   return (
     <Card sx={{ maxWidth: 345, height: '100%' }}>
-      <CardMedia           sx={{
-            justifyContent: "center",
+      <CardMedia sx={{
+        justifyContent: "center",
 
-            objectFit: "scale-down",
-          }}
+        objectFit: "scale-down",
+      }}
         component="img"
         height="194"
         image={blog?.image}
         alt="Paella dish"
       />
-              <CardHeader
-          avatar={
-            <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-             <PersonIcon/>
-            </Avatar>
-          }
+      <CardHeader 
+        avatar={
+          <Avatar onClick={(e) => {navigate(`/blog/author/${blog.author}`)}} sx={{ bgcolor: red[500] }} aria-label="recipe">
+            <PersonIcon />
+          </Avatar>
+        }
 
-          title={blog.author}
-          subheader= {new Date(blog.publish_date).toLocaleString()}
-        />
+        title={blog.author}
+        subheader={new Date(blog.publish_date).toLocaleString()}
+      >        </CardHeader>
 
       <CardContent>
         <Typography variant="body2" color="text.secondary">
@@ -73,7 +73,7 @@ blog===null&& navigate("/")
           </IconButton>
         )}
 
-        <IconButton  aria-label="comments" >
+        <IconButton aria-label="comments" >
           <ModeCommentOutlinedIcon />
           {blog.comment_count}
         </IconButton>
@@ -81,13 +81,13 @@ blog===null&& navigate("/")
           <VisibilityOutlinedIcon />
           {blog.post_views}
         </IconButton>
-        {menu==="myblog"?<Button variant="contained"sx={{ marginRight: 1, marginLeft: "auto"  }} size="small" 
-          onClick={() => navigate(`${blog.id}`, { state: blog})} >
-        Edit Blog</Button>:
-      <Button variant="contained"sx={{ marginRight: 1, marginLeft: "auto"  }} size="small" 
-          onClick={() => navigate(`blog/${blog.id}`, { state: blog})} >
-        Read More</Button>}
-  
+        {menu === "myblog" ? <Button variant="contained" sx={{ marginRight: 1, marginLeft: "auto" }} size="small"
+          onClick={() => navigate(`${blog.id}`, { state: blog })} >
+          Edit Blog</Button> :
+          <Button variant="contained" sx={{ marginRight: 1, marginLeft: "auto" }} size="small"
+            onClick={() => navigate(`blog/${blog.id}`, { state: blog })} >
+            Read More</Button>}
+
 
       </CardActions>
     </Card>
