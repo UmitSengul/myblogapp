@@ -25,7 +25,7 @@ const AppRouter = ({setPrefersDarkMode,prefersDarkMode}) => {
 
 
     return (
-        <Router>
+        <Router   >
                     <Navbar
           setPrefersDarkMode={setPrefersDarkMode}
           prefersDarkMode={prefersDarkMode}
@@ -51,7 +51,7 @@ const AppRouter = ({setPrefersDarkMode,prefersDarkMode}) => {
                 </Route>
                 <Route path="*" element={<NotFound />} />
             </Routes>
-            <Footer />
+            <Footer position="relative" color="primary" sx={{ top: 'auto', bottom: 0 }} />
         </Router>
     );
 };
