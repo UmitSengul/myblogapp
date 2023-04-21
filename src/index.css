@@ -5,6 +5,8 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  min-height: 100vh;
+  justify-content: space-between;
 
 }
 
@@ -13,3 +15,29 @@ code {
     monospace;
 }
 
+.about  {
+  flex: 1 0 auto;
+  padding: 10px;
+}
+.blogDetail {
+min-height: 80vh;
+  padding: 10px;
+  margin: auto;
+}
+.footer {
+  flex-shrink: 0;
+  text-align: center;
+  background-color: tomato;
+  color: white;
+  position:absolute;
+bottom:0;
+}
+
+
+
+/* Burası footerın en altta kalmasını sağlıyor */
+#root{
+  min-height: 100vh;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;}

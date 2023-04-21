@@ -29,10 +29,9 @@ const BlogCard = ({ blog, menu }) => {
   let liked = blog.likes_n?.find(x => x.user_id === currentUser?.id)
 
   return (
-    <Card sx={{ maxWidth: 345, height: '100%' }}>
+    <Card sx={{ maxWidth: 345, height: '100%',display: "flex", flexDirection: "column" }}>
       <CardMedia sx={{
         justifyContent: "center",
-
         objectFit: "scale-down",
       }}
         component="img"
@@ -44,7 +43,8 @@ const BlogCard = ({ blog, menu }) => {
         avatar={
           <Avatar onClick={(e) => {navigate(`/blog/author/${blog.author}`)}}  sx={{ bgcolor: "transparent" }}  aria-label="recipe">
       <IconButton color="primary" aria-label="upload picture" component="label">
-      <PersonIcon />
+      {/* <PersonIcon />  fotoğraf olmadığında bu render edilecek şekilde değişmeli*/}
+      <Avatar alt={blog?.author} src="https://picsum.photos/200" />
     </IconButton>  
           </Avatar>
         }
@@ -55,11 +55,16 @@ const BlogCard = ({ blog, menu }) => {
       >      </CardHeader>
 
       <CardContent>
+      <Typography variant="h6" color="text.secondary">
+            {blog?.title}
+          </Typography>
+      </CardContent>
+      <CardContent>
         <Typography variant="body2" color="text.secondary">
           {blog.content}
         </Typography>
       </CardContent>
-      <CardActions disableSpacing >
+      <CardActions disableSpacing  sx={{ marginBottom: 1, marginTop: "auto" }} >
         {liked !== undefined ? (
           <IconButton
             color="secondary"

@@ -17,12 +17,12 @@ import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
 import { Button, Divider, Grid, Paper, TextField } from "@mui/material";
 import PersonIcon from "@mui/icons-material/Person";
 import DeleteModal from "../components/blog/DeleteModal";
-import { useLocation } from "react-router-dom";
+import { Navigate, useLocation } from "react-router-dom";
 import { setBlog } from "../features/blogSlice";
 
 const BlogDetail = () => {
   const { state } = useLocation()
-  const myBlog = useSelector((state) => state.blog.blog)
+  const blog = useSelector((state) => state.blog.blog)
   const { handleLike, handleComment } = useBlogCalls();
   const { currentUser } = useSelector((state) => state.auth);
   const [expanded, setExpanded] = React.useState(false);
@@ -35,12 +35,12 @@ dispatch(setBlog(state))
 , []);
 
 console.log(state.id)
-console.log(myBlog)
+console.log(blog)
 
 
 let liked = undefined;
 
-liked = myBlog?.likes_n?.find((x) => x.user_id === currentUser?.id);
+liked = blog?.likes_n?.find((x) => x.user_id === currentUser?.id);
 
 const handleExpandClick = () => {
   setExpanded(!expanded);
@@ -49,15 +49,9 @@ const handleExpandClick = () => {
 
 return (
   <>
-    <div>BlogDetail </div>
-    <Grid
-      container
-      direction="row"
-      alignItems="stretch"
-      justifyContent="space-around"
-      spacing={3}
-    >
-      <Card sx={{ maxWidth: 800, width: "70vw", height: "100%" }}>
+
+      <Card className="blogDetail" sx={{ maxWidth: 800,minWidth: 450, width: "70vw", margin:"auto", display: "flex", flexDirection: "column",
+    justifyContent: "space-between" }}>
         <CardMedia
           sx={{
             justifyContent: "center",
@@ -66,61 +60,63 @@ return (
           }}
           component="img"
           height="194"
-          image={myBlog?.image}
+          image={blog?.image}
           alt="Paella dish"
         />
         <CardHeader
-          avatar={
-            <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-              <PersonIcon />
-            </Avatar>
-          }
-          title={myBlog?.author}
-          subheader={new Date(myBlog?.publish_date).toLocaleString()}
+        avatar={
+          <Avatar onClick={(e) => {Navigate(`/blog/author/${blog.author}`)}}  sx={{ bgcolor: "transparent" }}  aria-label="recipe">
+      <IconButton color="primary" aria-label="upload picture" component="label">
+      {/* <PersonIcon />  fotoğraf olmadığında bu render edilecek şekilde değişmeli*/}
+      <Avatar alt={blog?.author} src="https://picsum.photos/200" />
+    </IconButton>  
+          </Avatar>
+        }
+          subheader={new Date(blog?.publish_date).toLocaleString()}
         />
 
         <CardContent>
           <Typography variant="h6" color="text.secondary">
-            {myBlog?.title}
+            {blog?.title}
           </Typography>
           <Typography variant="body2" color="text.secondary">
-            {myBlog?.content}
+            {blog?.content}
           </Typography>
         </CardContent>
-        <CardActions disableSpacing>
+        <CardActions disableSpacing sx={{ marginBottom: 1, marginTop: "auto" }}>
           {liked !== undefined ? (
             <IconButton
               color="primary"
-              onClick={() => handleLike( myBlog.id )}
+              onClick={() => handleLike( blog.id )}
               aria-label="like"
             >
               <FavoriteIcon />
-              {myBlog?.likes}
+              {blog?.likes}
             </IconButton>
           ) : (
-            <IconButton onClick={() => handleLike( myBlog.id )} aria-label="like">
+            <IconButton onClick={() => handleLike( blog.id )} aria-label="like">
               <FavoriteIcon />
-              {myBlog?.likes}
+              {blog?.likes}
             </IconButton>
           )}
 
           <IconButton aria-label="comments" onClick={handleExpandClick}>
             <ModeCommentOutlinedIcon />
-            {myBlog?.comment_count}
+            {blog?.comment_count}
           </IconButton>
           <IconButton aria-label="shown">
             <VisibilityOutlinedIcon />
-            {myBlog?.post_views}
+            {blog?.post_views}
           </IconButton>
-          {myBlog && currentUser && myBlog.author === currentUser.username && (
-  <DeleteModal id={myBlog?.id} />
+          {blog && currentUser && blog.author === currentUser.username && (
+  <DeleteModal id={blog?.id} />
 )}
           {/* {blog.author===currentUser.username && <UpdateModal blog={blog} />}  */}
 
         </CardActions>
         <Collapse in={expanded} timeout="auto" unmountOnExit>
        { currentUser!==null && <CardContent>
-            <form onSubmit={(e) => { e.preventDefault(); handleComment({ id: myBlog.id, content }) }}>
+            <form onSubmit={(e) => { e.preventDefault(); handleComment({ id: blog.id, content }) }}>
               <TextField
                 id="outlined-multiline-flexible"
                 label="Add a comment"
@@ -143,10 +139,10 @@ return (
             </form>
           </CardContent>}
 
-          {myBlog?.comment_count > 0 && <h3>Comments</h3>}
+          {blog?.comment_count > 0 && <h3>Comments</h3>}
 
-          {myBlog?.comment_count > 0 &&
-            myBlog?.comments
+          {blog?.comment_count > 0 &&
+            blog?.comments
               .slice(0)
               .reverse()
               .map((comment) => (
@@ -183,8 +179,8 @@ return (
                 </Paper>
               ))}
         </Collapse>
-      </Card>{" "}
-    </Grid>
+      </Card>
+
   </>
 );
 };

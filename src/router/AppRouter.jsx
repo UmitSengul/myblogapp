@@ -51,7 +51,7 @@ const AppRouter = ({setPrefersDarkMode,prefersDarkMode}) => {
                 </Route>
                 <Route path="*" element={<NotFound />} />
             </Routes>
-            <Footer position="relative" color="primary" sx={{ top: 'auto', bottom: 0 }} />
+            <Footer />
         </Router>
     );
 };

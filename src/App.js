@@ -22,7 +22,7 @@ function App() {
 
 
   return (
-    <div className="App">
+
     <ThemeProvider theme={theme}>
         <Provider store={store}>
         <CssBaseline />
@@ -34,7 +34,7 @@ function App() {
         </Provider>
       <ToastContainer/>
       </ThemeProvider>
-    </div>
+
   );
 }
 
