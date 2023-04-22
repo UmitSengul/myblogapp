@@ -96,21 +96,37 @@ const useBlogCalls = () => {
   };
 
 
-  const updateBlog = async (id, values) => {
-    try {   dispatch(fetchStart());
-      const { data } = await axios.put(
-        `http://32171.fullstack.clarusway.com/api/blogs/${id}`,{values},
-     { headers: { Authorization: `Token ${token}` } }
-      );
+  const updateBlog = async (props) => {
+    console.log(props)
+    try {dispatch(fetchStart());
 
-      dispatch(updateBlog(id,data));
-   
-      toastSuccessNotify("Blog Updated");
-  
+    const { data } = await axios.put(
+      `http://32171.fullstack.clarusway.com/api/blogs/${props.id}/`,
+      props,
+      { headers: { Authorization: `Token ${token}` } }
+    );
+    dispatch(setBlog(data));
+    toastSuccessNotify("Blog Updated");
+    console.log(data);
+    navigate("/blog/"+props.id);
+
+    // try {   dispatch(fetchStart());
+    //   const { data } = await axios.put(
+    //       `http://32171.fullstack.clarusway.com/api/blogs/${props.id}/`,{
+    //         "title": "Ali sami",
+    //         "image": "https://i0.wp.com/www.thegeyik.com/wp-content/uploads/2015/07/ebesinin-am%C4%B1-ali-sami.jpg?w=695&ssl=1",
+    //         "category": 4,
+    //         "status": "p",
+    //         "content": "ali sami alkisa gösterilmiş tepkidir. tv tarihinin en önemli anlarından biridir.o an ortamda bulunan kişilerden ali sami alkış tarafından \"bak nasılda dedirttim.\" keyfiyle sırıtarak, ziya sengul tarafından duyulmayıp haliyle anlaşılmayarak, ahmet cakar tarafından monitör ve kameramanlara dönülerek \"ulan yayını kestiler mi acaba? hayır kesmedilerse koyuvermeyeyim kahkahayı orta yere.\" diye düşünceler dalarak karşılanan eylem."
+    //     },
+    //       { headers: { Authorization: `Token ${token}` } }
+    //   );
+
+
     } catch (error) {
-      toastErrorNotify("Blog couldnt delete");
+      toastErrorNotify("Blog couldnt update");
       console.log(error);
-      navigate("/");
+      navigate(-1)
     }
   };
 

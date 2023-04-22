@@ -33,7 +33,6 @@ dispatch(setBlog(state))
   }
 , []);
 
-console.log(state.id)
 console.log(blog)
 
 
