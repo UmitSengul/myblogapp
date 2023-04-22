@@ -17,7 +17,7 @@ import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
 import { useNavigate } from 'react-router-dom';
 import useBlogCalls from '../../hooks/useBlogCalls';
 
-const BlogCard = ({ blog, menu }) => {
+const BlogCard = ({ blog}) => {
   const navigate = useNavigate();
   blog === null && navigate("/")
 
@@ -89,12 +89,10 @@ const BlogCard = ({ blog, menu }) => {
           <VisibilityOutlinedIcon />
           {blog.post_views}
         </IconButton>
-        {menu === "myblog" ? <Button variant="contained" sx={{ marginRight: 1, marginLeft: "auto" }} size="small"
-          onClick={() => navigate(`${blog.id}`, { state: blog })} >
-          Edit Blog</Button> :
+        
           <Button variant="contained" sx={{ marginRight: 1, marginLeft: "auto" }} size="small"
-            onClick={() => navigate(`blog/${blog.id}`, { state: blog })} >
-            Read More</Button>}
+            onClick={() => navigate(`/blog/${blog.id}`, { state: blog })} >
+            Read More</Button>
 
 
       </CardActions>
