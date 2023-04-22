@@ -3,6 +3,7 @@ import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import Button from '@mui/material/Button';
 import useBlogCalls from "../../hooks/useBlogCalls";
+import { IconButton } from '@mui/material';
 
 
 const style = {
@@ -58,29 +59,29 @@ const Delete = () => {
   );
 }
 
-export default function DeleteModal({id,token}) {
-  const [open, setOpen] = React.useState(false);
+export default function DeleteModal({id}) {
+  const [openDelete, setOpenDelete] = React.useState(false);
   const handleOpen = () => {
-    setOpen(true);
+    setOpenDelete(true);
   };
   const handleClose = () => {
-    setOpen(false);
+    setOpenDelete(false);
   };
 
   return (
-    <div>
-      <Button variant="contained" sx={{ marginRight: 1, marginLeft: "auto"  }} size="small"  onClick={handleOpen}>DELETE</Button>
+    <>
+      <Button variant="contained" sx={{ marginRight: 3, marginLeft: "auto"  }} size="small"  onClick={handleOpen}>DELETE</Button>
       <Modal
-        open={open}
+        open={openDelete}
         onClose={handleClose}
         aria-labelledby="parent-modal-title"
         aria-describedby="parent-modal-description"
       >
         <Box sx={{ ...style, width: 400 }}>
           <h2 id="parent-modal-title">Are you want to delete?</h2>
-          <ChildModal id={id} token={token}close={handleClose}/>
+          <ChildModal id={id} close={handleClose}/>
         </Box>
       </Modal>
-    </div>
+    </>
   );
 } 

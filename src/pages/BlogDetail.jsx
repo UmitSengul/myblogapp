@@ -10,15 +10,14 @@ import Collapse from "@mui/material/Collapse";
 import Avatar from "@mui/material/Avatar";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
-import { red } from "@mui/material/colors";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import ModeCommentOutlinedIcon from "@mui/icons-material/ModeCommentOutlined";
 import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
 import { Button, Divider, Grid, Paper, TextField } from "@mui/material";
-import PersonIcon from "@mui/icons-material/Person";
 import DeleteModal from "../components/blog/DeleteModal";
 import { Navigate, useLocation } from "react-router-dom";
 import { setBlog } from "../features/blogSlice";
+import UpdateModal from "../components/blog/UpdateModal";
 
 const BlogDetail = () => {
   const { state } = useLocation()
@@ -83,7 +82,8 @@ return (
             {blog?.content}
           </Typography>
         </CardContent>
-        <CardActions disableSpacing sx={{ marginBottom: 1, marginTop: "auto" }}>
+        <CardActions disableSpacing  sx={{ marginBottom: 1, marginTop: "auto"}}>
+        
           {liked !== undefined ? (
             <IconButton
               color="primary"
@@ -108,10 +108,11 @@ return (
             <VisibilityOutlinedIcon />
             {blog?.post_views}
           </IconButton>
+  
           {blog && currentUser && blog.author === currentUser.username && (
   <DeleteModal id={blog?.id} />
 )}
-          {/* {blog.author===currentUser.username && <UpdateModal blog={blog} />}  */}
+         {blog.author===currentUser.username && <UpdateModal blog={blog} />} 
 
         </CardActions>
         <Collapse in={expanded} timeout="auto" unmountOnExit>
