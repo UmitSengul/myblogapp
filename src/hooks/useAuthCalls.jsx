@@ -25,7 +25,7 @@ const useAuthCall = () => {
         values
       )
       dispatch(loginSuccess(data))
-      toastSuccessNotify("Login performed")
+      toastSuccessNotify("Logged in successfully")
       navigate("/")
       console.log(data)
     } catch (error) {
@@ -40,7 +40,7 @@ const useAuthCall = () => {
     try {
       await axios.post(process.env.REACT_APP_MAIN_URL+`users/auth/logout/`)
       dispatch(logoutSuccess())
-      toastSuccessNotify("Logout performed")
+      toastSuccessNotify("Logged out successfully")
       navigate("/")
     } catch (err) {
       dispatch(fetchFail())

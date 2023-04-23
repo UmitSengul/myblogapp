@@ -27,7 +27,7 @@ const BlogCard = ({ blog}) => {
   let liked = blog.likes_n?.find(x => x.user_id === currentUser?.id)
 
   return (
-    <Card sx={{ maxWidth: 345, height: '100%',display: "flex", flexDirection: "column" }}>
+    <Card sx={{ maxWidth: 345, height: '100%',display: "flex", flexDirection: "column", margin:0 }}>
       <CardMedia sx={{
         justifyContent: "center",
         objectFit: "scale-down",

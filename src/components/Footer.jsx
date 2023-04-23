@@ -4,7 +4,8 @@ import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import { Container, Grid } from '@mui/material';
+import { Container } from '@mui/material';
+import Grid from '@mui/material/Unstable_Grid2';
 
 export default function Footer() {
 

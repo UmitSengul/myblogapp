@@ -67,10 +67,10 @@ console.log(userNavBarPages)
 console.log(currentUser);
 
   return (
-    <AppBar position="static">
+    <AppBar position="static" style={{ marginBottom: "1rem" }}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
+          <AdbIcon sx={{ display: { xs: 'none', md: 'flex' } }} />
           <Typography
             variant="h6"
             noWrap
@@ -133,7 +133,7 @@ console.log(currentUser);
               }
             </Menu>
           </Box>
-          <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
+          <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }}} />
           <Typography
             variant="h5"
             noWrap
