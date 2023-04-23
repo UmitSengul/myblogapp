@@ -21,7 +21,7 @@ const useAuthCall = () => {
     console.log(values)
     try {
       const { data } = await axios.post(
-        `http://32171.fullstack.clarusway.com/users/auth/login/`,
+        process.env.REACT_APP_MAIN_URL+`users/auth/login/`,
         values
       )
       dispatch(loginSuccess(data))
@@ -38,7 +38,7 @@ const useAuthCall = () => {
   const logout = async () => {
     dispatch(fetchStart())
     try {
-      await axios.post(`http://32171.fullstack.clarusway.com/users/auth/logout/`)
+      await axios.post(process.env.REACT_APP_MAIN_URL+`users/auth/logout/`)
       dispatch(logoutSuccess())
       toastSuccessNotify("Logout performed")
       navigate("/")
@@ -53,7 +53,7 @@ const useAuthCall = () => {
     console.log(values)
     try {
       const { data } = await axios.post(
-        `http://32171.fullstack.clarusway.com/users/register/`,
+        process.env.REACT_APP_MAIN_URL+`users/register/`,
         values
       )
       dispatch(registerSuccess(data))

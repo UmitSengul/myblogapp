@@ -5,11 +5,11 @@ const useAxios = () => {
   const { token } = useSelector((state) => state.auth)
 
   const axiosPublic = axios.create({
-    baseURL: "http://32171.fullstack.clarusway.com/",
+    baseURL: process.env.REACT_APP_MAIN_URL,
   })
 
   const axiosWithToken = axios.create({
-    baseURL: "http://32171.fullstack.clarusway.com/",
+    baseURL: process.env.REACT_APP_MAIN_URL,
     headers: { Authorization: `Token ${token}` },
   })
 
