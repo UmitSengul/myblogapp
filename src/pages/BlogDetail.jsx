@@ -108,10 +108,10 @@ return (
             {blog?.post_views}
           </IconButton>
   
-          {blog && currentUser && blog.author === currentUser.username && (
+          {blog && currentUser && blog.author === currentUser?.username && (
   <DeleteModal id={blog?.id} />
 )}
-         {blog.author===currentUser.username && <UpdateModal blog={blog} />} 
+         {blog.author===currentUser?.username && <UpdateModal blog={blog} />} 
 
         </CardActions>
         <Collapse in={expanded} timeout="auto" unmountOnExit>
