@@ -38,7 +38,7 @@ height="300"
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small">Home</Button>
+        <Button size="small">Change Password</Button>
         <Button size="small">Update</Button>
       </CardActions>
     </Card>
