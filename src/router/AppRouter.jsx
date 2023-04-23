@@ -15,45 +15,38 @@ import Author from "../pages/Author";
 import Navbar from "../components/Navbar";
 import AdminPanel from "../pages/AdminPanel";
 
-
-
 //BrowserRouter Router olarak import edildi. dikkat etmek lazım.
-const AppRouter = ({setPrefersDarkMode,prefersDarkMode}) => {
-
-
-
-
-
-    return (
-        <Router   >
-                    <Navbar
-          setPrefersDarkMode={setPrefersDarkMode}
-          prefersDarkMode={prefersDarkMode}
-        />
-            <Routes>
-                <Route path="" element={<HomePage />} />
-                <Route path="blog/:id" element={<BlogDetail />} />
-                <Route path="blog/author/:id" element={<Author />} />
-                <Route path="about" element={<About />} />
-                <Route path="notfound" element={<NotFound />} />
-                <Route path="register" element={<Register />} />
-                <Route path="Login" element={<Login />} />
-                <Route path="AdminPanel" element={<AdminPanel />} />
-                <Route path="My Blogs" element={<PrivateRouter />}>
-                    <Route path=":id" element={<BlogDetail />} />
-                    <Route path="" element={<MyBlogs />} />
-                </Route>
-                <Route path="profile" element={<PrivateRouter />}>
-                    <Route path="" element={<Profile />} />
-                </Route>
-                <Route path="New Blog" element={<PrivateRouter />}>
-                    <Route path="" element={<NewBlog />} />
-                </Route>
-                <Route path="*" element={<NotFound />} />
-            </Routes>
-            <Footer />
-        </Router>
-    );
+const AppRouter = ({ setPrefersDarkMode, prefersDarkMode }) => {
+  return (
+    <Router>
+      <Navbar
+        setPrefersDarkMode={setPrefersDarkMode}
+        prefersDarkMode={prefersDarkMode}
+      />
+      <Routes>
+        <Route path="" element={<HomePage />} />
+        <Route path="blog/:id" element={<BlogDetail />} />
+        <Route path="blog/author/:id" element={<Author />} />
+        <Route path="about" element={<About />} />
+        <Route path="notfound" element={<NotFound />} />
+        <Route path="register" element={<Register />} />
+        <Route path="Login" element={<Login />} />
+        <Route path="AdminPanel" element={<AdminPanel />} />
+        <Route path="My Blogs" element={<PrivateRouter />}>
+          <Route path=":id" element={<BlogDetail />} />
+          <Route path="" element={<MyBlogs />} />
+        </Route>
+        <Route path="profile" element={<PrivateRouter />}>
+          <Route path="" element={<Profile />} />
+        </Route>
+        <Route path="New Blog" element={<PrivateRouter />}>
+          <Route path="" element={<NewBlog />} />
+        </Route>
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+      <Footer />
+    </Router>
+  );
 };
 
 export default AppRouter;

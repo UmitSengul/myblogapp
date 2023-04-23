@@ -1,20 +1,22 @@
-import * as React from 'react';
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import CssBaseline from '@mui/material/CssBaseline';
-import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
-import { Container } from '@mui/material';
-import Grid from '@mui/material/Unstable_Grid2';
+import * as React from "react";
+import AppBar from "@mui/material/AppBar";
+import Box from "@mui/material/Box";
+import CssBaseline from "@mui/material/CssBaseline";
+import Toolbar from "@mui/material/Toolbar";
+import Typography from "@mui/material/Typography";
+import { Container } from "@mui/material";
+import Grid from "@mui/material/Unstable_Grid2";
 
 export default function Footer() {
-
-
   return (
     <React.Fragment>
       <CssBaseline />
 
-      <AppBar  position="relative"  color="primary" sx={{ t: 'auto', b: 0 ,minWidth:450}}>
+      <AppBar
+        position="relative"
+        color="primary"
+        sx={{ t: "auto", b: 0, minWidth: 450 }}
+      >
         <Toolbar>
           <Box
             sx={{
@@ -28,9 +30,8 @@ export default function Footer() {
           >
             <Container maxWidth="lg">
               <Grid container direction="column" alignItems="center">
-                <Grid item xs={12}>
-                </Grid>
-                <Grid item xs={12} textAlign="center" >
+                <Grid item xs={12}></Grid>
+                <Grid item xs={12} textAlign="center">
                   <Typography color="textSecondary" variant="subtitle1">
                     {` React | Material UI | React Router`}
                   </Typography>
@@ -45,24 +46,4 @@ export default function Footer() {
       </AppBar>
     </React.Fragment>
   );
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }

@@ -20,13 +20,11 @@ const authSlice = createSlice({
       state.currentUser = payload?.user;
       state.isAdmin = payload?.user?.is_superuser;
       state.token = payload?.key;
-
     },
     logoutSuccess: (state) => {
       state.loading = false;
       state.currentUser = null;
       state.token = null;
-
     },
     registerSuccess: (state, { payload }) => {
       state.loading = false;

@@ -1,14 +1,13 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-    loading: true,
-    allBlogs: [],
-    likes: [],
-    categories: [],
-    blog: [],
-    comments: [],
-}
-
+  loading: true,
+  allBlogs: [],
+  likes: [],
+  categories: [],
+  blog: [],
+  comments: [],
+};
 
 /* export const getBlog= createAsyncThunk("getBlog", async (thunkAPI,{rejectWithValue}) => {
     const response = await fetch('http://32171.fullstack.clarusway.com/api/blogs')
@@ -20,33 +19,33 @@ const blogSlice = createSlice({
   name: "blog",
   initialState,
   reducers: {
-
     allBlogs: (state, action) => {
       state.loading = false;
-      state.allBlogs = action.payload
+      state.allBlogs = action.payload;
     },
     setBlog: (state, action) => {
       state.loading = false;
-      state.blog = action.payload
+      state.blog = action.payload;
     },
 
     deleteBlogById: (state, action) => {
       state.loading = false;
-      state.blog ={}
-      state.allBlogs=state["allBlogs"].filter(blog=>blog.id!==action.payload)
+      state.blog = {};
+      state.allBlogs = state["allBlogs"].filter(
+        (blog) => blog.id !== action.payload
+      );
     },
     updateBlog: (state, action) => {
       state.loading = false;
-      state.allBlogs[state.allBlogs.findIndex(obj => obj.id === action.payload.id)] = action.payload.data
+      state.allBlogs[
+        state.allBlogs.findIndex((obj) => obj.id === action.payload.id)
+      ] = action.payload.data;
     },
-
 
     setCategories: (state, action) => {
       state.loading = false;
-      state.categories = action.payload
+      state.categories = action.payload;
     },
-
-
 
     fetchStart: (state) => {
       state.loading = true;
@@ -56,11 +55,18 @@ const blogSlice = createSlice({
       state.loading = false;
       state.error = true;
     },
-  }
-},
+  },
+});
 
-);
+export const {
+  allBlogs,
+  setCategories,
+  deleteBlogById,
+  updateBlog,
+  setBlog,
+  getBlogById,
+  fetchStart,
+  fetchFail,
+} = blogSlice.actions;
 
-export const {allBlogs, setCategories, deleteBlogById,updateBlog,setBlog,getBlogById,fetchStart,fetchFail} = blogSlice.actions
-
-export default blogSlice.reducer
+export default blogSlice.reducer;

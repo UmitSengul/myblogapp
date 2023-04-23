@@ -1,18 +1,17 @@
-import * as React from 'react';
-import Box from '@mui/material/Box';
-import Modal from '@mui/material/Modal';
-import Button from '@mui/material/Button';
+import * as React from "react";
+import Box from "@mui/material/Box";
+import Modal from "@mui/material/Modal";
+import Button from "@mui/material/Button";
 import useBlogCalls from "../../hooks/useBlogCalls";
 
-
 const style = {
-  position: 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
   width: 400,
-  bgcolor: 'background.paper',
-  border: '2px solid #000',
+  bgcolor: "background.paper",
+  border: "2px solid #000",
   boxShadow: 24,
   pt: 2,
   px: 4,
@@ -21,7 +20,7 @@ const style = {
 
 function ChildModal(props) {
   const { deleteBlog } = useBlogCalls();
-   const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = React.useState(false);
   const handleOpen = () => {
     setOpen(true);
   };
@@ -29,19 +28,30 @@ function ChildModal(props) {
     setOpen(false);
     props.close();
   };
-console.log(props.id)
+  console.log(props.id);
 
-const Delete = () => {
-    deleteBlog(props.id)
-};
-
-
-
+  const Delete = () => {
+    deleteBlog(props.id);
+  };
 
   return (
     <React.Fragment>
-      <Button variant="contained" sx={{ marginRight: 1, marginLeft: "auto"  }} size="small" onClick={handleOpen}>Yes I Want</Button>
-      <Button variant="contained" sx={{ marginRight: 1, marginLeft: "auto"  }} size="small" onClick={handleClose}>CANCEL</Button>
+      <Button
+        variant="contained"
+        sx={{ marginRight: 1, marginLeft: "auto" }}
+        size="small"
+        onClick={handleOpen}
+      >
+        Yes I Want
+      </Button>
+      <Button
+        variant="contained"
+        sx={{ marginRight: 1, marginLeft: "auto" }}
+        size="small"
+        onClick={handleClose}
+      >
+        CANCEL
+      </Button>
       <Modal
         open={open}
         onClose={handleClose}
@@ -50,15 +60,29 @@ const Delete = () => {
       >
         <Box sx={{ ...style, width: 400 }}>
           <h2 id="child-modal-title">Are you sure?</h2>
-          <Button variant="contained" sx={{ marginRight: 1, marginLeft: "auto"  }} size="small" onClick={props.close}>CANCEL</Button>
-          <Button variant="contained" sx={{ marginRight: 1, marginLeft: "auto"  }} size="small"  onClick={Delete} >Yes I Want</Button>
-             </Box>
+          <Button
+            variant="contained"
+            sx={{ marginRight: 1, marginLeft: "auto" }}
+            size="small"
+            onClick={props.close}
+          >
+            CANCEL
+          </Button>
+          <Button
+            variant="contained"
+            sx={{ marginRight: 1, marginLeft: "auto" }}
+            size="small"
+            onClick={Delete}
+          >
+            Yes I Want
+          </Button>
+        </Box>
       </Modal>
     </React.Fragment>
   );
 }
 
-export default function DeleteModal({id}) {
+export default function DeleteModal({ id }) {
   const [openDelete, setOpenDelete] = React.useState(false);
   const handleOpen = () => {
     setOpenDelete(true);
@@ -69,7 +93,14 @@ export default function DeleteModal({id}) {
 
   return (
     <>
-      <Button variant="contained" sx={{ marginRight: 3, marginLeft: "auto"  }} size="small"  onClick={handleOpen}>DELETE</Button>
+      <Button
+        variant="contained"
+        sx={{ marginRight: 3, marginLeft: "auto" }}
+        size="small"
+        onClick={handleOpen}
+      >
+        DELETE
+      </Button>
       <Modal
         open={openDelete}
         onClose={handleClose}
@@ -78,9 +109,9 @@ export default function DeleteModal({id}) {
       >
         <Box sx={{ ...style, width: 400 }}>
           <h2 id="parent-modal-title">Are you want to delete?</h2>
-          <ChildModal id={id} close={handleClose}/>
+          <ChildModal id={id} close={handleClose} />
         </Box>
       </Modal>
     </>
   );
-} 
+}

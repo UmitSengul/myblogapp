@@ -1,9 +1,7 @@
-import React from 'react'
+import React from "react";
 
 const ChangePasswordModal = () => {
-  return (
-    <div>ChangePasswordModal</div>
-  )
-}
+  return <div>ChangePasswordModal</div>;
+};
 
-export default ChangePasswordModal
+export default ChangePasswordModal;
